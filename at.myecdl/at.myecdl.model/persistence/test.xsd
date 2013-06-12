@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="test"
+    targetNamespace="http://tempuri.org/test.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/test.xsd"
+    xmlns:mstns="http://tempuri.org/test.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="test">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name" type="xs:string"/>
+        <xs:element name="description" type="xs:string" minOccurs="0"/>
+        <xs:element ref="question" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="answer">
+    <xs:complexType>
+      <xs:attribute name="text" type="xs:string" use="required"/>
+      <xs:attribute name="isCorrect" type="xs:boolean" default="false" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="question">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="answer" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:string" use="optional"/>
+      <xs:attribute name="text" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

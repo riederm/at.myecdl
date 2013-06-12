@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<test xmlns="http://tempuri.org/test.xsd"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="test.xsd">
+  <name>Modul 1: Grundlagen </name>
+  <description>Theoriefragen rund um den Computer...</description>
+  
+  <question text="What is the first question?">
+    <answer text="answer 1"/>
+    <answer text="answer 2"/>
+    <answer text="answer 3" isCorrect="true"/>
+    <answer text="answer 4"/>
+  </question>
+
+  <question text="Was brauchen Sie zur Anmeldung in einem Computernetzwerk?">
+    <answer text="Geburtsdatum und Kennwort"/>
+    <answer text="Kennwort und Passwort"/>
+    <answer text="Benutzername und Kennwort" isCorrect="true"/>
+    <answer text="Benutzername und Adresse"/>
+  </question>
+  
+  <question text="Wie wird eine nicht mehr reagierende Anwendung noch bezeichnet?">
+    <answer text="Das System ist hochgefahren"/>
+    <answer text="Das System ist infiziert"/>
+    <answer text="Das Programm ist abgestürzt" isCorrect="true"/>
+    <answer text="Das Programm ist heruntergefahren"/>
+  </question>
+  
+  <question text="Wozu dient bei einem modernen Bildschirm ein Bildschirmschoner?">
+    <answer text="Zum Energiesparen"/>
+    <answer text="Zur Steigerung der Prozessorgeschwindigkeit"/>
+    <answer text="Zur Schonung der Grafikkarte"/>
+    <answer text="Zur Unterhaltung" isCorrect="true"/>
+  </question>
+  
+  <question text="Was enthält der Papierkorb?">
+    <answer text="Gelöschte Dateien" isCorrect="true"/>
+    <answer text="Abgebrochene Druckaufträge"/>
+    <answer text="Formatierte Dateien"/>
+    <answer text="Sicherungskopien"/>
+  </question>
+  
+  <question text="Auf welchem Medium können Sicherungskopien von Daten regelmäßig aktualisiert werden?">
+    <answer text="DVD-RW" isCorrect="true"/>
+    <answer text="DVD-ROM"/>
+    <answer text="CD-ROM"/>
+    <answer text="RAM"/>
+  </question>
+  
+  <question text="Was trifft auf eine komprimierte Datei zu?">
+    <answer text="Sie wird leichter defekt als nicht komprimierte Dateien"/>
+    <answer text="Sie benötigt weniger Speicherplatz" isCorrect="true"/>
+    <answer text="Ihr Dateiname wird vom Betriebssystem fett hervorgehoben"/>
+    <answer text="Nur eine komprimierte Datei kann per E-Mail versendet werden"/>
+  </question>
+  
+  <question text="Bei welchem Vorgang kann ein Computervirus einen PC befallen?">
+    <answer text="Attachment von einem unbekannten Absender öffnen" isCorrect="true"/>
+    <answer text="Gelöschte Datei aus dem Papierkorb wiederherstellen"/>
+    <answer text="Anti-Viren-Software aktualisieren"/>
+    <answer text="Dateien komprimieren"/>
+  </question>
+  
+  <question text="Was können Sie mit dem Druckmanager tun?">
+    <answer text="Einen Druckauftrag anhalten oder löschen" isCorrect="true"/>
+    <answer text="Kopf- und Fußzeilen in Dokumente eingeben"/>
+    <answer text="Einen Druckauftrag versenden"/>
+    <answer text="Dokumente in der Druckansicht bearbeiten"/>
+  </question>
+  
+</test>
