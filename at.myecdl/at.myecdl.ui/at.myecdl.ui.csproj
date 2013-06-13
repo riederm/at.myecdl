@@ -64,6 +64,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="impl\ProgressBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="impl\ProgressDialogImpl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="impl\QuestionaireWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="impl\SelectTestUi.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -78,7 +90,17 @@
     </Compile>
     <Compile Include="impl\AppBar.cs" />
     <Compile Include="impl\BottomBarPositioner.cs" />
+    <Compile Include="impl\CircularEnumerator.cs" />
     <Compile Include="impl\EmptyUiPositioner.cs" />
+    <Compile Include="impl\ProgressBox.xaml.cs">
+      <DependentUpon>ProgressBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="impl\ProgressDialogImpl.xaml.cs">
+      <DependentUpon>ProgressDialogImpl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="impl\QuestionaireWindow.xaml.cs">
+      <DependentUpon>QuestionaireWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="impl\SelectTestUi.xaml.cs">
       <DependentUpon>SelectTestUi.xaml</DependentUpon>
     </Compile>
@@ -88,9 +110,9 @@
     </Compile>
     <Compile Include="impl\WindowMaximizer.cs" />
     <Compile Include="ISelectTestUi.cs" />
-    <Compile Include="ITestRunner.cs" />
     <Compile Include="inject\UiModule.cs" />
     <Compile Include="ITaskDetailUi.cs" />
+    <Compile Include="ITestRunner.cs" />
     <Compile Include="IUiPositioner.cs" />
     <Compile Include="ITestRunUi.cs" />
   </ItemGroup>
@@ -140,6 +162,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="impl\img\test.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="impl\img\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="impl\img\texture.jpg" />
+    <Resource Include="impl\img\texture3.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

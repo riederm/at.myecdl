@@ -23,6 +23,7 @@ namespace at.myecdl.ui.inject {
             Bind<ITestRunner>().To<TestRunnerImpl>();
             Bind<ITestRunUi>().To<TestRunWindow>();
             Bind<ISelectTestUi>().To<SelectTestUiImpl>();
+            Bind<ITaskDetailUi>().To<QuestionaireWindow>();
 
             Bind<IUiPositioner>().To<BottomBarPositioner>().Named(LOCATION_BOTTOM);
             Bind<IUiPositioner>().To<WindowMaximizer>().Named(LOCATION_MAXIMIZED);

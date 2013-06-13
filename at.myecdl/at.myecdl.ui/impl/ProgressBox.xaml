@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="at.myecdl.ui.impl.ProgressBox"
+             x:Name="ProgressBoxControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="128" d:DesignWidth="475">
+    <DockPanel LastChildFill="true">
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
+            <Image Height="40" HorizontalAlignment="Left" Margin="6,6,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Center" Width="40" Source="/at.myecdl.ui;component/impl/img/info.png" />
+            <Label Content="titleLabel" Height="28" HorizontalAlignment="Left" Margin="5,5,5,0" Name="titleLabel" VerticalAlignment="Center" />
+        </StackPanel>
+        <DockPanel DockPanel.Dock="Bottom" LastChildFill="true">
+            <Button Content="Abbrechen" Height="23" HorizontalAlignment="Right" Margin="10" Name="cancelButton" VerticalAlignment="Top" Width="75" DockPanel.Dock="Right" IsCancel="True" />
+            <Label HorizontalAlignment="Stretch" Margin="10" Name="taskLabel" VerticalAlignment="Top" />
+        </DockPanel>
+        <ProgressBar Margin="5" Name="progress" VerticalAlignment="Center" Height="18" Value="60" LargeChange="10" SmallChange="1" />
+    </DockPanel>
+</UserControl>

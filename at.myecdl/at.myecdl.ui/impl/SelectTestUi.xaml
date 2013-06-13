@@ -15,12 +15,12 @@
             </Border>
             <Border BorderBrush="Silver" BorderThickness="0,2,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" MinHeight="60" CornerRadius="1" Margin="5" DockPanel.Dock="Bottom" Padding="5" FlowDirection="LeftToRight">
                 <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Button Content="Start Test" Height="30" Name="startButton" Width="100" HorizontalAlignment="Left" Margin="3" Click="startButton_Click" />
-                    <Button Content="Exit" Height="30" Name="exitButton" Width="100" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="3" Click="exitButton_Click" />
+                    <Button Content="Start Test" Height="30" Name="startButton" Width="100" HorizontalAlignment="Left" Margin="3" Click="startButton_Click" IsDefault="True" />
+                    <Button Content="Exit" Height="30" Name="exitButton" Width="100" HorizontalContentAlignment="Center" HorizontalAlignment="Right" Margin="3" Click="exitButton_Click" IsCancel="True" />
                 </DockPanel>
             </Border>
             <Border>
-                <ListView Name="testList" Margin="15" MinHeight="250">
+                <ListView Name="testList" Margin="15" MinHeight="250" SelectedIndex="0" SelectionChanged="testList_SelectionChanged" MouseDoubleClick="testList_MouseDoubleClick">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>

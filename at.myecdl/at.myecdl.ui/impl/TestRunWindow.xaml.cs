@@ -10,6 +10,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using at.myecdl.model;
+using at.myecdl.util;
 
 namespace at.myecdl.ui.impl {
     /// <summary>
@@ -32,7 +34,7 @@ namespace at.myecdl.ui.impl {
             if (!initialized) {
                 initialized = true;
                 this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
-                AppBarFunctions.SetAppBar(this, AppBarPosition.Bottom);
+                //AppBarFunctions.SetAppBar(this, AppBarPosition.Bottom);
             }
         }
 
@@ -102,10 +104,8 @@ namespace at.myecdl.ui.impl {
             return this;
         }
 
-        public void StartNewTestRun(model.ITest test) {
-            UpdateProgress(0, test.Tasks.Count);
-            UpdateTimeLeft(new TimeSpan(0,10,0));
-            UpdateCurrentTaskDescription(test.Tasks[0].Description);
+        public void StartNewTestRun(ITest test) {
+            
         }
     }
 }

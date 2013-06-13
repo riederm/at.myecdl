@@ -85,21 +85,23 @@ namespace at.myecdl.ui.impl {
         private static Dictionary<Window, RegisterInfo> s_RegisteredWindowInfo
             = new Dictionary<Window, RegisterInfo>();
         private static RegisterInfo GetRegisterInfo(Window appbarWindow) {
-            RegisterInfo reg;
+            RegisterInfo reg = null;
             if (s_RegisteredWindowInfo.ContainsKey(appbarWindow)) {
                 reg = s_RegisteredWindowInfo[appbarWindow];
             } else {
-                reg = new RegisterInfo() {
-                    CallbackId = 0,
-                    Window = appbarWindow,
-                    IsRegistered = false,
-                    Edge = AppBarPosition.Top,
-                    OriginalStyle = appbarWindow.WindowStyle,
-                    OriginalPosition = new Point(appbarWindow.Left, appbarWindow.Top),
-                    OriginalSize =
-                        new Size(appbarWindow.ActualWidth, appbarWindow.ActualHeight),
-                    OriginalResizeMode = appbarWindow.ResizeMode,
-                };
+                appbarWindow.Dispatcher.Invoke(new Action(() => {
+                    reg = new RegisterInfo() {
+                        CallbackId = 0,
+                        Window = appbarWindow,
+                        IsRegistered = false,
+                        Edge = AppBarPosition.Top,
+                        OriginalStyle = appbarWindow.WindowStyle,
+                        OriginalPosition = new Point(appbarWindow.Left, appbarWindow.Top),
+                        OriginalSize =
+                            new Size(appbarWindow.ActualWidth, appbarWindow.ActualHeight),
+                        OriginalResizeMode = appbarWindow.ResizeMode,
+                    };
+                }));
                 s_RegisteredWindowInfo.Add(appbarWindow, reg);
             }
             return reg;
@@ -125,8 +127,9 @@ namespace at.myecdl.ui.impl {
 
             APPBARDATA abd = new APPBARDATA();
             abd.cbSize = Marshal.SizeOf(abd);
-            abd.hWnd = new WindowInteropHelper(appbarWindow).Handle;
-
+            appbarWindow.Dispatcher.Invoke(new Action(() => {
+                abd.hWnd = new WindowInteropHelper(appbarWindow).Handle;
+            }));
             if (edge == AppBarPosition.None) {
                 if (info.IsRegistered) {
                     SHAppBarMessage((int)ABMsg.ABM_REMOVE, ref abd);
@@ -143,15 +146,23 @@ namespace at.myecdl.ui.impl {
 
                 uint ret = SHAppBarMessage((int)ABMsg.ABM_NEW, ref abd);
 
-                HwndSource source = HwndSource.FromHwnd(abd.hWnd);
+                HwndSource source = null;
+                appbarWindow.Dispatcher.Invoke(new Action(() => {
+                    source = HwndSource.FromHwnd(abd.hWnd);
+                }));
                 source.AddHook(new HwndSourceHook(info.WndProc));
+                
             }
 
-            appbarWindow.WindowStyle = WindowStyle.None;
-            appbarWindow.ResizeMode = ResizeMode.NoResize;
-            appbarWindow.Topmost = true;
+
+            appbarWindow.Dispatcher.Invoke(new Action(() => {
+                appbarWindow.WindowStyle = WindowStyle.None;
+                appbarWindow.ResizeMode = ResizeMode.NoResize;
+                appbarWindow.Topmost = true;
+            }));
 
             ABSetPos(info.Edge, appbarWindow);
+
         }
 
         private delegate void ResizeDelegate(Window appbarWindow, Rect rect);
@@ -167,7 +178,9 @@ namespace at.myecdl.ui.impl {
         private static void ABSetPos(AppBarPosition edge, Window appbarWindow) {
             APPBARDATA barData = new APPBARDATA();
             barData.cbSize = Marshal.SizeOf(barData);
-            barData.hWnd = new WindowInteropHelper(appbarWindow).Handle;
+            appbarWindow.Dispatcher.Invoke(new Action(() => {
+                barData.hWnd = new WindowInteropHelper(appbarWindow).Handle;
+            }));
             barData.uEdge = (int)edge;
 
             if (barData.uEdge == (int)AppBarPosition.Left || barData.uEdge == (int)AppBarPosition.Right) {

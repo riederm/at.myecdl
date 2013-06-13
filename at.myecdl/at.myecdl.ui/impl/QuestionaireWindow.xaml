@@ -1,0 +1,26 @@
+﻿<Window x:Class="at.myecdl.ui.impl.QuestionaireWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Loaded="WindowLoaded" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DesignHeight="296" d:DesignWidth="414" ResizeMode="NoResize" WindowState="Normal" WindowStyle="None" FontFamily="Arial" Foreground="Black" AllowsTransparency="True" OpacityMask="#FFAA514A">
+    <Window.Resources>
+        <DataTemplate x:Key="dataTemplate"  >
+            <RadioButton Margin="15" Content="{Binding Answer}" 
+                                     Checked="AnswerSelected"
+                                     Name="thecheckbox" 
+                                     FontSize="18" 
+                                     FontStyle="Normal" 
+                                     GroupName="answeres" FontFamily="Arial" />
+        </DataTemplate>
+    </Window.Resources>
+    <DockPanel Margin="10,0,0,140" Height="Auto" Name="dock" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+        <Label Height="Auto" Name="questionLabel" FontSize="20" FontStyle="Normal" Foreground="Black" DockPanel.Dock="Top" Margin="10" Content="{Binding Question}" FontWeight="Bold" />
+        <!-- the answer list -->
+        <ItemsControl  DockPanel.Dock="Top" Height ="auto" Width="auto" Name="answerBox" ItemsSource="{Binding PossibleAnswers}" ItemTemplate="{StaticResource dataTemplate}"  Margin="40,0,0,0" FontSize="20">
+
+        </ItemsControl >
+    </DockPanel>
+    <Window.Background>
+        <ImageBrush ImageSource="/at.myecdl.ui;component/impl/img/texture.jpg" Stretch="Fill" TileMode="None" AlignmentX="Center" AlignmentY="Center" ViewboxUnits="RelativeToBoundingBox" ViewportUnits="RelativeToBoundingBox" />
+    </Window.Background>
+</Window>

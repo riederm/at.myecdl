@@ -42,8 +42,29 @@ namespace at.myecdl.ui.impl {
         }
 
         private void startButton_Click(object sender, RoutedEventArgs e) {
-            this.Close(); 
-            testRunner.Run((ITest)testList.SelectedItem);
+            ITest selectedTest = (ITest)testList.SelectedItem;
+            startTest(selectedTest);
+        }
+
+        private void startTest(ITest selectedTest) {
+            this.Close();
+            testRunner.Run(selectedTest);
+        }
+
+        private void testList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+
+        }
+
+        private void testList_MouseDoubleClick(object sender, MouseButtonEventArgs e) {
+            DependencyObject obj = (DependencyObject)e.OriginalSource;
+
+            while (obj != null && obj != testList) {
+                if (obj.GetType() == typeof(ListViewItem)) {
+                    startTest((ITest)((ListViewItem)obj).Content);
+                    break;
+                }
+                obj = VisualTreeHelper.GetParent(obj);
+            }
         }
 
     }

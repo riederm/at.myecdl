@@ -20,6 +20,5 @@ namespace at.myecdl.ui {
 
         void EnableButtons(bool submitButton, bool skipButton, bool endButton);
 
-        void StartNewTestRun(model.ITest test);
     }
 }
