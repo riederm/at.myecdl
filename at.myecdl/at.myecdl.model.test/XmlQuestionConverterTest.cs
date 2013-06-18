@@ -16,15 +16,15 @@ namespace at.myecdl.model.test {
 
         [TestInitialize]
         public void Init() {
-            converter = new XmlQuestionConverter(new TestFactory(), new QuestionFactory(), new AnswerFactory());
+            converter = new XmlQuestionConverter(new TestFactory(), new QuestionFactory(), new AnswerFactory(), new ExerciseFactory());
         }
 
         [TestMethod]
         public void ShouldFillTestName() {
-            var xmlTest = new global::test();
+            var xmlTest = new at.myecdl.model.persistence.test();
             xmlTest.name = "MyTest";
             xmlTest.description = "MyDescription";
-            xmlTest.question = new question[0];
+            xmlTest.Items = new List<object>();
             var test = converter.convert(xmlTest);
 
             Assert.AreEqual(test.Name, "MyTest");
@@ -34,17 +34,18 @@ namespace at.myecdl.model.test {
 
         [TestMethod]
         public void ShouldFillQuestions() {
-            var xmlTest = new global::test();
+            var xmlTest = new at.myecdl.model.persistence.test();
             xmlTest.name = "MyTest";
-            xmlTest.question = new question[2];
+            xmlTest.Items = new List<object>();
 
-            xmlTest.question[0] = new question();
-            xmlTest.question[0].answer = new answer[0];
-            xmlTest.question[0].text = "question1";
-
-            xmlTest.question[1] = new question();
-            xmlTest.question[1].answer = new answer[0];
-            xmlTest.question[1].text = "question2";
+            xmlTest.Items.Add(new question() {
+                answer = new List<answer>(),
+                text = "question1"
+            });
+            xmlTest.Items.Add(new question() {
+                answer = new List<answer>(),
+                text = "question2"
+            });
 
             var test = converter.convert(xmlTest);
 
@@ -56,21 +57,23 @@ namespace at.myecdl.model.test {
 
         [TestMethod]
         public void ShouldFillAnswers() {
-            var xmlTest = new global::test();
+            var xmlTest = new at.myecdl.model.persistence.test();
             xmlTest.name = "MyTest";
-            xmlTest.question = new question[2];
+            xmlTest.Items = new List<object>();
 
-            xmlTest.question[0] = new question();
-            xmlTest.question[0].answer = new answer[2];
-            xmlTest.question[0].text = "question1";
-            xmlTest.question[0].answer[0] = createXmlAnswer("answer1");
-            xmlTest.question[0].answer[1] = createXmlAnswer("answer2", true);
-            
-
-            xmlTest.question[1] = new question();
-            xmlTest.question[1].answer = new answer[1];
-            xmlTest.question[1].text = "question2";
-            xmlTest.question[1].answer[0] = createXmlAnswer("answer1", true);
+            xmlTest.Items.Add(new question() {
+                text = "question1",
+                answer = new List<answer>() {
+                    new answer(){ text = "answer1" },
+                    new answer(){ text = "answer2", isCorrect=true }
+                },
+            });
+            xmlTest.Items.Add(new question() {
+                text = "question2",
+                answer = new List<answer>() {
+                    new answer(){ text = "answer1" },
+                },
+            });
 
             var test = converter.convert(xmlTest);
 
@@ -80,18 +83,11 @@ namespace at.myecdl.model.test {
             Assert.AreEqual(((IQuestion)test.Tasks[0]).Answers.Count, 2);
             Assert.AreEqual(((IQuestion)test.Tasks[0]).Answers[0].Answer, "answer1");
             Assert.AreEqual(((IQuestion)test.Tasks[0]).Answers[1].Answer, "answer2");
-
+            Assert.AreEqual(((IQuestion)test.Tasks[0]).Answers[1].IsCorrect, true);
             Assert.AreEqual("question2", ((IQuestion)test.Tasks[1]).Question);
             Assert.AreEqual(((IQuestion)test.Tasks[1]).Answers.Count, 1);
             Assert.AreEqual(((IQuestion)test.Tasks[1]).Answers[0].Answer, "answer1");
 
-        }
-
-        private answer createXmlAnswer(string p, bool isCorrect = false) {
-            answer answer = new answer();
-            answer.text = p;
-            answer.isCorrect = isCorrect;
-            return answer;
         }
     }
 }

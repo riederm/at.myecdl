@@ -3,7 +3,7 @@
   <Interface Name="at.myecdl.model.ITest">
     <Position X="4.25" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAIAAAAAAA=</HashCode>
       <FileName>ITest.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -32,27 +32,36 @@
       <Property Name="Answers" />
     </ShowAsCollectionAssociation>
   </Interface>
-  <Interface Name="at.myecdl.model.IExcercise">
+  <Interface Name="at.myecdl.model.IExercise">
     <Position X="7.75" Y="4.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
       <FileName>IExcercise.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Evaluator" />
+    </ShowAsAssociation>
   </Interface>
   <Interface Name="at.myecdl.model.IAnswer">
     <Position X="4.5" Y="7" Width="2.25" />
-    <AssociationLine Name="Question" Type="at.myecdl.model.IQuestion">
-      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
-        <Position X="-0.921" Y="0.79" Height="0.162" Width="0.764" />
-      </MemberNameLabel>
-    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAEAAIAAgAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAIAAgAAAAA=</HashCode>
       <FileName>IAnswer.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Question" />
-    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="at.myecdl.model.IEvaluator">
+    <Position X="7.75" Y="6" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IEvaluator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="at.myecdl.model.IEvaluationResult">
+    <Position X="11" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IEvaluationResult.cs</FileName>
+    </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

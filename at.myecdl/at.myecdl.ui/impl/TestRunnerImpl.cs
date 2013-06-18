@@ -17,6 +17,7 @@ namespace at.myecdl.ui.impl {
         private IEnumerator<ITask> tasks;
         private HashSet<ITask> submittedTasks = new HashSet<ITask>();
         private ITaskDetailUi detailUi;
+        private ITest test;
 
         [Inject]
         public TestRunnerImpl(ITestRunUi testUi, ITaskDetailUi detailUi, [Named(inject.UiModule.LOCATION_BOTTOM)] IUiPositioner positioner) {
@@ -34,19 +35,25 @@ namespace at.myecdl.ui.impl {
         }
 
         void testUi_SubmitClicked(object sender, EventArgs e) {
+            if (tasks.MoveNext()) {
+                var currentTask = tasks.Current;
 
+            }
         }
 
         void testUi_SkipClicked(object sender, EventArgs e) {
-
+            if (tasks.MoveNext()) {
+                UpdateUiForTask(test, tasks.Current);
+            }
         }
 
         void testUi_EndClicked(object sender, EventArgs e) {
-
+            
         }
 
         public void Run(model.ITest test) {
             submittedTasks.Clear();
+            this.test = test;
             tasks = new CircularEnumerator<ITask>(test.Tasks);
             tasks.MoveNext();
 
@@ -57,17 +64,17 @@ namespace at.myecdl.ui.impl {
                  .StartNew(() => positioner.PositionWindow(testUi.AsWindow()))
                  .ContinueWith(t => {
                      progress.Close();
-                     testUi.UpdateCurrentTaskDescription(tasks.Current.Description);
-                     testUi.UpdateProgress(GetNumberOfSubmittedTasks(test.Tasks), test.Tasks.Count);
-                     detailUi.InitializeFor(tasks.Current);
+                     var currentTask = tasks.Current;
+                     UpdateUiForTask(test, currentTask);
                  }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
-        void worker_DoWork(object sender, DoWorkEventArgs e) {
-
+        private void UpdateUiForTask(model.ITest test, ITask currentTask) {
+            testUi.UpdateCurrentTaskDescription(currentTask.Description);
+            testUi.UpdateProgress(GetNumberOfSubmittedTasks(test.Tasks), test.Tasks.Count);
+            detailUi.InitializeFor(currentTask);
         }
-
-
+        
         private int GetNumberOfSubmittedTasks(List<ITask> list) {
             return list.Sum<ITask>(t => submittedTasks.Contains(t) ? 1 : 0);
         }

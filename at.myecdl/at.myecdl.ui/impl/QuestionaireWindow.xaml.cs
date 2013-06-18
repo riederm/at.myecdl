@@ -28,28 +28,38 @@ namespace at.myecdl.ui.impl {
             get { return currentQuestion; }
             set {
                 currentQuestion = value;
-                DisplayQuestion(currentQuestion);
+                if (currentQuestion != null) {
+                    DisplayQuestion(currentQuestion, currentQuestion.Answers);
+                } else {
+                    ClearUi();
+                }
             }
         }
 
-        public QuestionaireWindow() {
+        private void ClearUi() {
+            DisplayQuestion(null, null);
+        }
 
+        public QuestionaireWindow() {
             InitializeComponent();
         }
 
-        public void DisplayQuestion(IQuestion question) {
+        private void DisplayQuestion(IQuestion question) {
+            DisplayQuestion(question, question.Answers);
+        }
+
+        private void DisplayQuestion(IQuestion question, List<IAnswer> answers) {
             questionLabel.DataContext = question;
-            answerBox.ItemsSource = question.Answers;
-   
+            answerBox.ItemsSource = answers;
+
+            if (question != null) {
+                answerBox.IsEnabled = !question.IsAnswered;
+            }
+
             // show detail-descriptoin-dialogue 
             var background = Background;
             this.Background = null;
             this.Background = background;
-        }
-
-        public void SetCurrentQuestion(IQuestion newCurrentQuestion) {
-            currentQuestion = newCurrentQuestion;
-            DisplayQuestion(currentQuestion);
         }
 
         private void WindowLoaded(object sender, RoutedEventArgs e) {
@@ -58,66 +68,29 @@ namespace at.myecdl.ui.impl {
             }
         }
 
-        public void ShowPresenter() {
+        public void ShowMaximized() {
             Show();
-            double delta = System.Windows.SystemParameters.WindowCaptionHeight; 
+            double delta = System.Windows.SystemParameters.WindowCaptionHeight;
             this.Height = System.Windows.SystemParameters.FullPrimaryScreenHeight + delta;
             this.Width = System.Windows.SystemParameters.FullPrimaryScreenWidth;
             this.Left = 0;
             this.Top = 0;
-
-
         }
-
-        public void HidePresenter() {
-            Visibility = System.Windows.Visibility.Hidden;
-        }
-
+        
         private void AnswerSelected(object sender, RoutedEventArgs e) {
             Control sourceControl = (Control)e.Source;
             IAnswer answer = (IAnswer)sourceControl.DataContext;
-            //CurrentQuestion.Answer = answer;
-            currentQuestion.Answers.ForEach(a => a.Checked = false);
             answer.Checked = true;
         }
 
-        //public void showevaluation(itaskevaluation evaluation) {
-        //     mark correct and incorrect answer
-        //    markquestionanswers(evaluation);
-
-        //}
-
-        //private void markQuestionAnswers(ITaskEvaluation evaluation) {
-        //    ITask currentTask = evaluation.Task;
-        //    ignore if currenTask is no question
-        //    if (currentTask is Question) {
-        //        Question currentQuestion = (Question)currentTask;
-        //        markCorrect(currentQuestion.CorrectAnswers);
-        //        if (!evaluation.IsCorrect) {
-        //            currently selected answer (it is wrong o_o )
-        //            markIncorrect(currentQuestion.Answer);
-        //        }
-        //    }
-        //}
-
-        //private void markIncorrect(Answer answer) {
-        //    RadioButton button = GetRadioButtonForAnswer(answer);
-        //    button.Foreground = Brushes.Red;
-        //    button.FontWeight = FontWeights.Bold;
-        //}
-
-        //private void markCorrect(ISet<Answer> Answers) {
-        //    foreach (var answer in Answers) {
-        //        RadioButton button = GetRadioButtonForAnswer(answer);
-        //        if (button != null) {
-        //            button.Foreground = Brushes.Green;
-        //            button.FontWeight = FontWeights.Bold;
-        //        }
-        //    }
-        //}
+        private void AnswerCleared(object sender, RoutedEventArgs e) {
+            Control sourceControl = (Control)e.Source;
+            IAnswer answer = (IAnswer)sourceControl.DataContext;
+            answer.Checked = false;
+        }
 
         private RadioButton GetRadioButtonForAnswer(IAnswer answer) {
-            
+
             var currentItem = answerBox.ItemContainerGenerator.ContainerFromItem(answer);
             // Getting the ContentPresenter of myListBoxItem
             ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(currentItem);
@@ -126,7 +99,7 @@ namespace at.myecdl.ui.impl {
         }
 
         private childItem FindVisualChild<childItem>(DependencyObject obj)
-    where childItem : DependencyObject {
+            where childItem : DependencyObject {
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++) {
                 DependencyObject child = VisualTreeHelper.GetChild(obj, i);
                 if (child != null && child is childItem)
@@ -140,16 +113,14 @@ namespace at.myecdl.ui.impl {
             return null;
         }
 
-
         public void InitializeFor(ITask task) {
             if (task is IQuestion) {
-                SetCurrentQuestion((IQuestion)task);
-                ShowPresenter();
+                CurrentQuestion = (IQuestion)task;
+                ShowMaximized();
             } else {
                 Visibility = System.Windows.Visibility.Hidden;
             }
         }
-
 
         public Window AsWindow() {
             return this;

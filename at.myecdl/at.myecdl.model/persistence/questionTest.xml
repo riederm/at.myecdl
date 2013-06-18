@@ -1,10 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-
-<test xmlns="http://tempuri.org/test.xsd"
+﻿<test xmlns="http://tempuri.org/test.xsd"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:noNamespaceSchemaLocation="test.xsd">
-  <name>Modul 1: Grundlagen </name>
-  <description>Theoriefragen rund um den Computer...</description>
+xsi:noNamespaceSchemaLocation="test.xsd"
+  name="Modul 1: Grundlagen"  description="Theoriefragen rund um den Computer...">
   
   <question text="What is the first question?">
     <answer text="answer 1"/>
@@ -68,5 +65,7 @@ xsi:noNamespaceSchemaLocation="test.xsd">
     <answer text="Einen Druckauftrag versenden"/>
     <answer text="Dokumente in der Druckansicht bearbeiten"/>
   </question>
+
+  <exercise id="ft.001" text="my first fileTask" class="at.myecdl.model.file.task.FileTask001"/>
   
 </test>

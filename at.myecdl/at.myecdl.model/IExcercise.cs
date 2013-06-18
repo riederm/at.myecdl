@@ -5,7 +5,11 @@ using System.Text;
 
 namespace at.myecdl.model
 {
-    public interface IExcercise : ITask
+    public interface IExercise : ITask
     {
+        IEvaluator Evaluator {
+            get;
+            set;
+        }
     }
 }

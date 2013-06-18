@@ -6,6 +6,8 @@ using Ninject.Modules;
 using at.myecdl.util;
 using at.myecdl.model.impl;
 using at.myecdl.model.persistence;
+using at.myecdl.model.file.impl;
+using at.myecdl.model.file;
 
 namespace at.myecdl.model.inject {
     public class ModelModule : NinjectModule {
@@ -21,6 +23,10 @@ namespace at.myecdl.model.inject {
             Bind<ITestProvider>().To<SimpleTestProvider>();
             Bind<TestDeserializer>().ToSelf();
             Bind<XmlQuestionConverter>().ToSelf();
+
+            Bind<Random>().ToMethod(x => new Random()).InSingletonScope();
+            Bind<FileNameFactory>().ToSelf();
+            Bind<IFileSystem>().To<FileSystemImpl>();
             
             BindFactories();
             
@@ -30,6 +36,7 @@ namespace at.myecdl.model.inject {
             Bind<IFactory<ITest>>().To<TestFactory>();
             Bind<IFactory<IQuestion>>().To<QuestionFactory>();
             Bind<IFactory<IAnswer>>().To<AnswerFactory>();
+            Bind<IFactory<IExercise>>().To<ExerciseFactory>();
         }
     }
 }

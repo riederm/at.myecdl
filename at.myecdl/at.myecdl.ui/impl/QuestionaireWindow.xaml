@@ -6,6 +6,7 @@
         <DataTemplate x:Key="dataTemplate"  >
             <RadioButton Margin="15" Content="{Binding Answer}" 
                                      Checked="AnswerSelected"
+                                     Unchecked="AnswerCleared"
                                      Name="thecheckbox" 
                                      FontSize="18" 
                                      FontStyle="Normal" 
@@ -13,12 +14,9 @@
         </DataTemplate>
     </Window.Resources>
     <DockPanel Margin="10,0,0,140" Height="Auto" Name="dock" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Center">
-
         <Label Height="Auto" Name="questionLabel" FontSize="20" FontStyle="Normal" Foreground="Black" DockPanel.Dock="Top" Margin="10" Content="{Binding Question}" FontWeight="Bold" />
         <!-- the answer list -->
-        <ItemsControl  DockPanel.Dock="Top" Height ="auto" Width="auto" Name="answerBox" ItemsSource="{Binding PossibleAnswers}" ItemTemplate="{StaticResource dataTemplate}"  Margin="40,0,0,0" FontSize="20">
-
-        </ItemsControl >
+        <ItemsControl  DockPanel.Dock="Top" Height ="auto" Width="auto" Name="answerBox" ItemsSource="{Binding PossibleAnswers}" ItemTemplate="{StaticResource dataTemplate}"  Margin="40,0,0,0" FontSize="20"/>
     </DockPanel>
     <Window.Background>
         <ImageBrush ImageSource="/at.myecdl.ui;component/impl/img/texture.jpg" Stretch="Fill" TileMode="None" AlignmentX="Center" AlignmentY="Center" ViewboxUnits="RelativeToBoundingBox" ViewportUnits="RelativeToBoundingBox" />
