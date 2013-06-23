@@ -7,6 +7,7 @@ using at.myecdl.model.persistence;
 using at.myecdl.model.impl;
 using at.myecdl.util;
 using Moq;
+using at.myecdl.model.persistence.impl;
 
 namespace at.myecdl.model.test {
     [TestClass]
@@ -16,7 +17,7 @@ namespace at.myecdl.model.test {
 
         [TestInitialize]
         public void Init() {
-            converter = new XmlQuestionConverter(new TestFactory(), new QuestionFactory(), new AnswerFactory(), new ExerciseFactory());
+            converter = new XmlQuestionConverter(new TestFactory(), new QuestionFactory(), new AnswerFactory(), new ExerciseFactory(), null, null, null);
         }
 
         [TestMethod]

@@ -36,5 +36,14 @@ namespace at.myecdl.model.impl
             get;
             set;
         }
+
+        public void Setup() {
+            //ignore
+        }
+
+
+        public IEvaluationResult Evaluate() {
+            return null;
+        }
     }
 }

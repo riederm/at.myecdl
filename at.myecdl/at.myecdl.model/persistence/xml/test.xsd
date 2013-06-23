@@ -34,8 +34,8 @@
 
   <xs:complexType name="exercise">
     <xs:attribute name="id" type="xs:string" use="optional"/>
-    <xs:attribute name="text" type="xs:string" use="required"/>
-    <xs:attribute name="class" type="xs:string" use="required"/>
+    <xs:attribute name="text" type="xs:string" use="optional"/>
+    <xs:attribute name="class" type="xs:string" use="optional"/>
   </xs:complexType>
 
   <xs:element name="test" type="test"/>

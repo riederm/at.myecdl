@@ -18,12 +18,18 @@ namespace at.myecdl.ui.impl {
         private HashSet<ITask> submittedTasks = new HashSet<ITask>();
         private ITaskDetailUi detailUi;
         private ITest test;
+        private IVolumeProvider volumeProvider;
+
 
         [Inject]
-        public TestRunnerImpl(ITestRunUi testUi, ITaskDetailUi detailUi, [Named(inject.UiModule.LOCATION_BOTTOM)] IUiPositioner positioner) {
+        public TestRunnerImpl(ITestRunUi testUi,
+                                ITaskDetailUi detailUi,
+                                [Named(inject.UiModule.LOCATION_BOTTOM)] IUiPositioner positioner,
+                                IVolumeProvider volumeProvider) {
             this.testUi = testUi;
             this.positioner = positioner;
             this.detailUi = detailUi;
+            this.volumeProvider = volumeProvider;
 
             InitializeBindings(testUi);
         }
@@ -35,20 +41,21 @@ namespace at.myecdl.ui.impl {
         }
 
         void testUi_SubmitClicked(object sender, EventArgs e) {
-            if (tasks.MoveNext()) {
-                var currentTask = tasks.Current;
-
-            }
+            var currentTask = GetCurrentTask();
+            currentTask.Evaluate();
+            submittedTasks.Add(currentTask);
+            MoveToNextTask();
+            UpdateUiForCurrentTask();
         }
 
         void testUi_SkipClicked(object sender, EventArgs e) {
-            if (tasks.MoveNext()) {
-                UpdateUiForTask(test, tasks.Current);
-            }
+            MoveToNextTask();
+            UpdateUiForCurrentTask();
         }
 
         void testUi_EndClicked(object sender, EventArgs e) {
-            
+            volumeProvider.Dispose();
+            Application.Current.Shutdown();
         }
 
         public void Run(model.ITest test) {
@@ -61,22 +68,32 @@ namespace at.myecdl.ui.impl {
             progress.Begin("Lade Test...");
             progress.Show();
             Task.Factory
-                 .StartNew(() => positioner.PositionWindow(testUi.AsWindow()))
+                 .StartNew(() => {
+                     positioner.PositionWindow(testUi.AsWindow());
+                     volumeProvider.Initialize();
+                 })
                  .ContinueWith(t => {
                      progress.Close();
                      var currentTask = tasks.Current;
-                     UpdateUiForTask(test, currentTask);
+                     UpdateUiForCurrentTask();
                  }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
-        private void UpdateUiForTask(model.ITest test, ITask currentTask) {
+        private void UpdateUiForCurrentTask() {
+            var currentTask = GetCurrentTask();
+            currentTask.Setup(); //TODO make in background
             testUi.UpdateCurrentTaskDescription(currentTask.Description);
-            testUi.UpdateProgress(GetNumberOfSubmittedTasks(test.Tasks), test.Tasks.Count);
+            testUi.UpdateCurrentTaskIndex(test.Tasks.IndexOf(currentTask), test.Tasks.Count);
+            testUi.UpdateProgress(submittedTasks.Count, test.Tasks.Count);
             detailUi.InitializeFor(currentTask);
         }
-        
-        private int GetNumberOfSubmittedTasks(List<ITask> list) {
-            return list.Sum<ITask>(t => submittedTasks.Contains(t) ? 1 : 0);
+                
+        private ITask GetCurrentTask() {
+            return tasks.Current;
+        }
+
+        private void MoveToNextTask() {
+            tasks.MoveNext();
         }
 
     }

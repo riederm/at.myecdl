@@ -90,7 +90,7 @@ namespace at.myecdl.ui.impl {
                 ));
         }
 
-        public void UpdateProgress(int currentStep, int maxSteps) {
+        public void UpdateCurrentTaskIndex(int currentStep, int maxSteps) {
             ProgressLabel.Content = String.Format("Question {0} of {1}", currentStep, maxSteps);
         }
 
@@ -106,6 +106,11 @@ namespace at.myecdl.ui.impl {
 
         public void StartNewTestRun(ITest test) {
             
+        }
+
+        public void UpdateProgress(int currentStep, int maxSteps) {
+            progressBar.Maximum = maxSteps;
+            progressBar.Value = currentStep;
         }
     }
 }

@@ -1,7 +1,8 @@
 ﻿<Window x:Class="at.myecdl.ui.impl.SelectTestUiImpl"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Select a Test" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DesignHeight="520" d:DesignWidth="480" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="Select a Test" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DesignHeight="520" d:DesignWidth="674" 
+        SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
         <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True">
             <Border BorderBrush="Silver" BorderThickness="0,0,0,2"  HorizontalAlignment="Stretch" VerticalAlignment="Top" CornerRadius="1" Margin="5" DockPanel.Dock="Top" Padding="5">
@@ -20,7 +21,7 @@
                 </DockPanel>
             </Border>
             <Border>
-                <ListView Name="testList" Margin="15" MinHeight="250" SelectedIndex="0" SelectionChanged="testList_SelectionChanged" MouseDoubleClick="testList_MouseDoubleClick">
+                <ListView Name="testList" Margin="15" MinHeight="250" SelectedIndex="0" SelectionChanged="testList_SelectionChanged" MouseDoubleClick="testList_MouseDoubleClick" MinWidth="600">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>

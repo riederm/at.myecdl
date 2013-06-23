@@ -1,0 +1,14 @@
+﻿<test xmlns="http://tempuri.org/test.xsd"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="test.xsd"
+  name="Modul 2: Dateiverwaltung"  description="Praktische Übungen rund um Dateien...">
+
+  <exercise id="ft.001"
+            text="Navigieren Sie zu {PATH}M2_Demo_Vista\arbeit\tabellen\2005 &#xA;Löschen Sie den Ordner 2005"
+            class="at.myecdl.model.file.task.FileTask001"/>
+
+  <exercise id="ft.002"
+            text="Navigieren Sie zu {PATH}M2_Demo_Vista\arbeit\tabellen\2006 &#xA;Löschen Sie den Ordner 2006"
+            class="at.myecdl.model.file.task.FileTask001"/>
+  
+</test>

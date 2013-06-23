@@ -22,6 +22,8 @@ namespace at.myecdl.ui {
             IKernel kernel = new StandardKernel();
             kernel.Load(new INinjectModule[] { new UiModule(), new ModelModule()  });
 
+            
+
             var testSelector = kernel.Get<ISelectTestUi>();
             testSelector.Show();
             

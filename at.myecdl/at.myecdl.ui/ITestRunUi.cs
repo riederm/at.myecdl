@@ -16,9 +16,10 @@ namespace at.myecdl.ui {
 
         void UpdateTimeLeft(TimeSpan timeLeft);
 
-        void UpdateProgress(int currentStep, int maxSteps);
+        void UpdateCurrentTaskIndex(int currentStep, int maxSteps);
 
         void EnableButtons(bool submitButton, bool skipButton, bool endButton);
 
+        void UpdateProgress(int currentStep, int maxSteps);
     }
 }

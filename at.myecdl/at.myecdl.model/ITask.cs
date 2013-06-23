@@ -7,10 +7,14 @@ namespace at.myecdl.model
 {
     public interface ITask
     {
+        void Setup();
+
         string Description
         {
             get;
             set;
         }
+
+        IEvaluationResult Evaluate();
     }
 }

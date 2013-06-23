@@ -6,11 +6,14 @@ using Ninject;
 
 namespace at.myecdl.model.file.task {
 
-    public class FileTask001 : AbstractFileTask {
-        private const string FOLDER = @"M2_Demo_Vista\arbeit\tabellen\2005";
+    [Task(Id="ft.002")]
+    public class FileTask002 : AbstractFileTask {
+        
+        const string FOLDER = @"M2_Demo_Vista\arbeit\tabellen\2006";
 
         [Inject]
-        public FileTask001(IFileSystem fs, IVolumeProvider vp) : base(fs, vp)  {
+        public FileTask002(IFileSystem fs, IVolumeProvider vp)
+            : base(fs, vp) {
         }
 
         public override void Setup() {

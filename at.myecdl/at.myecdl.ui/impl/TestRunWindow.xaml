@@ -29,7 +29,7 @@
                 </Button>
             </StackPanel>
             <Label Name="TestNameLabel" Content="Modul 2" FontSize="14" FontFamily="Arial" Height="26" Width="242" />
-
+            <ProgressBar Height="22" Name="progressBar" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="5,0" />
         </StackPanel>
 
         <DockPanel Height="Auto" Width="266"  DockPanel.Dock="Right">

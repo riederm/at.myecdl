@@ -17,7 +17,7 @@ xsi:noNamespaceSchemaLocation="test.xsd"
     <answer text="Benutzername und Adresse"/>
   </question>
   
-  <question text="Wie wird eine nicht mehr reagierende Anwendung noch bezeichnet?">
+  <!--<question text="Wie wird eine nicht mehr reagierende Anwendung noch bezeichnet?">
     <answer text="Das System ist hochgefahren"/>
     <answer text="Das System ist infiziert"/>
     <answer text="Das Programm ist abgestürzt" isCorrect="true"/>
@@ -64,8 +64,6 @@ xsi:noNamespaceSchemaLocation="test.xsd"
     <answer text="Kopf- und Fußzeilen in Dokumente eingeben"/>
     <answer text="Einen Druckauftrag versenden"/>
     <answer text="Dokumente in der Druckansicht bearbeiten"/>
-  </question>
-
-  <exercise id="ft.001" text="my first fileTask" class="at.myecdl.model.file.task.FileTask001"/>
+  </question>-->
   
 </test>

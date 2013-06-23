@@ -15,29 +15,29 @@ namespace at.myecdl.model.persistence {
     using System.Text;
     using System.Xml;
     using System.Collections.Generic;
-    
-    
+
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/test.xsd")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/test.xsd", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://tempuri.org/test.xsd")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://tempuri.org/test.xsd", IsNullable = false)]
     public partial class test {
-        
+
         private List<object> itemsField;
-        
+
         private string nameField;
-        
+
         private string descriptionField;
-        
+
         private static System.Xml.Serialization.XmlSerializer serializer;
-        
+
         public test() {
             this.itemsField = new List<object>();
         }
-        
-        [System.Xml.Serialization.XmlElementAttribute("exercise", typeof(exercise), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("question", typeof(question), Order=0)]
+
+        [System.Xml.Serialization.XmlElementAttribute("exercise", typeof(exercise), Order = 0)]
+        [System.Xml.Serialization.XmlElementAttribute("question", typeof(question), Order = 0)]
         public List<object> Items {
             get {
                 return this.itemsField;
@@ -46,7 +46,7 @@ namespace at.myecdl.model.persistence {
                 this.itemsField = value;
             }
         }
-        
+
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string name {
             get {
@@ -56,7 +56,7 @@ namespace at.myecdl.model.persistence {
                 this.nameField = value;
             }
         }
-        
+
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string description {
             get {
@@ -66,7 +66,7 @@ namespace at.myecdl.model.persistence {
                 this.descriptionField = value;
             }
         }
-        
+
         private static System.Xml.Serialization.XmlSerializer Serializer {
             get {
                 if ((serializer == null)) {
@@ -75,7 +75,7 @@ namespace at.myecdl.model.persistence {
                 return serializer;
             }
         }
-        
+
         #region Serialize/Deserialize
         /// <summary>
         /// Serializes current test object into an XML document
@@ -93,8 +93,7 @@ namespace at.myecdl.model.persistence {
                 memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
                 streamReader = new System.IO.StreamReader(memoryStream);
                 return streamReader.ReadToEnd();
-            }
-            finally {
+            } finally {
                 if ((streamReader != null)) {
                     streamReader.Dispose();
                 }
@@ -103,11 +102,11 @@ namespace at.myecdl.model.persistence {
                 }
             }
         }
-        
+
         public virtual string Serialize() {
             return Serialize(Encoding.UTF8);
         }
-        
+
         /// <summary>
         /// Deserializes workflow markup into an test object
         /// </summary>
@@ -121,31 +120,29 @@ namespace at.myecdl.model.persistence {
             try {
                 obj = Deserialize(xml);
                 return true;
-            }
-            catch (System.Exception ex) {
+            } catch (System.Exception ex) {
                 exception = ex;
                 return false;
             }
         }
-        
+
         public static bool Deserialize(string xml, out test obj) {
             System.Exception exception = null;
             return Deserialize(xml, out obj, out exception);
         }
-        
+
         public static test Deserialize(string xml) {
             System.IO.StringReader stringReader = null;
             try {
                 stringReader = new System.IO.StringReader(xml);
                 return ((test)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
-            }
-            finally {
+            } finally {
                 if ((stringReader != null)) {
                     stringReader.Dispose();
                 }
             }
         }
-        
+
         /// <summary>
         /// Serializes current test object into file
         /// </summary>
@@ -157,21 +154,20 @@ namespace at.myecdl.model.persistence {
             try {
                 SaveToFile(fileName, encoding);
                 return true;
-            }
-            catch (System.Exception e) {
+            } catch (System.Exception e) {
                 exception = e;
                 return false;
             }
         }
-        
+
         public virtual bool SaveToFile(string fileName, out System.Exception exception) {
             return SaveToFile(fileName, Encoding.UTF8, out exception);
         }
-        
+
         public virtual void SaveToFile(string fileName) {
             SaveToFile(fileName, Encoding.UTF8);
         }
-        
+
         public virtual void SaveToFile(string fileName, System.Text.Encoding encoding) {
             System.IO.StreamWriter streamWriter = null;
             try {
@@ -179,14 +175,13 @@ namespace at.myecdl.model.persistence {
                 streamWriter = new System.IO.StreamWriter(fileName, false, Encoding.UTF8);
                 streamWriter.WriteLine(xmlString);
                 streamWriter.Close();
-            }
-            finally {
+            } finally {
                 if ((streamWriter != null)) {
                     streamWriter.Dispose();
                 }
             }
         }
-        
+
         /// <summary>
         /// Deserializes xml markup from file into an test object
         /// </summary>
@@ -200,26 +195,25 @@ namespace at.myecdl.model.persistence {
             try {
                 obj = LoadFromFile(fileName, encoding);
                 return true;
-            }
-            catch (System.Exception ex) {
+            } catch (System.Exception ex) {
                 exception = ex;
                 return false;
             }
         }
-        
+
         public static bool LoadFromFile(string fileName, out test obj, out System.Exception exception) {
             return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
         }
-        
+
         public static bool LoadFromFile(string fileName, out test obj) {
             System.Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-        
+
         public static test LoadFromFile(string fileName) {
             return LoadFromFile(fileName, Encoding.UTF8);
         }
-        
+
         public static test LoadFromFile(string fileName, System.Text.Encoding encoding) {
             System.IO.FileStream file = null;
             System.IO.StreamReader sr = null;
@@ -230,8 +224,7 @@ namespace at.myecdl.model.persistence {
                 sr.Close();
                 file.Close();
                 return Deserialize(xmlString);
-            }
-            finally {
+            } finally {
                 if ((file != null)) {
                     file.Dispose();
                 }
@@ -242,22 +235,22 @@ namespace at.myecdl.model.persistence {
         }
         #endregion
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/test.xsd")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/test.xsd", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://tempuri.org/test.xsd")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://tempuri.org/test.xsd", IsNullable = false)]
     public partial class exercise {
-        
+
         private string idField;
-        
+
         private string textField;
-        
+
         private string classField;
-        
+
         private static System.Xml.Serialization.XmlSerializer serializer;
-        
+
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string id {
             get {
@@ -267,7 +260,7 @@ namespace at.myecdl.model.persistence {
                 this.idField = value;
             }
         }
-        
+
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string text {
             get {
@@ -277,7 +270,7 @@ namespace at.myecdl.model.persistence {
                 this.textField = value;
             }
         }
-        
+
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string @class {
             get {
@@ -287,7 +280,7 @@ namespace at.myecdl.model.persistence {
                 this.classField = value;
             }
         }
-        
+
         private static System.Xml.Serialization.XmlSerializer Serializer {
             get {
                 if ((serializer == null)) {
@@ -296,7 +289,7 @@ namespace at.myecdl.model.persistence {
                 return serializer;
             }
         }
-        
+
         #region Serialize/Deserialize
         /// <summary>
         /// Serializes current exercise object into an XML document
@@ -314,8 +307,7 @@ namespace at.myecdl.model.persistence {
                 memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
                 streamReader = new System.IO.StreamReader(memoryStream);
                 return streamReader.ReadToEnd();
-            }
-            finally {
+            } finally {
                 if ((streamReader != null)) {
                     streamReader.Dispose();
                 }
@@ -324,11 +316,11 @@ namespace at.myecdl.model.persistence {
                 }
             }
         }
-        
+
         public virtual string Serialize() {
             return Serialize(Encoding.UTF8);
         }
-        
+
         /// <summary>
         /// Deserializes workflow markup into an exercise object
         /// </summary>
@@ -342,31 +334,29 @@ namespace at.myecdl.model.persistence {
             try {
                 obj = Deserialize(xml);
                 return true;
-            }
-            catch (System.Exception ex) {
+            } catch (System.Exception ex) {
                 exception = ex;
                 return false;
             }
         }
-        
+
         public static bool Deserialize(string xml, out exercise obj) {
             System.Exception exception = null;
             return Deserialize(xml, out obj, out exception);
         }
-        
+
         public static exercise Deserialize(string xml) {
             System.IO.StringReader stringReader = null;
             try {
                 stringReader = new System.IO.StringReader(xml);
                 return ((exercise)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
-            }
-            finally {
+            } finally {
                 if ((stringReader != null)) {
                     stringReader.Dispose();
                 }
             }
         }
-        
+
         /// <summary>
         /// Serializes current exercise object into file
         /// </summary>
@@ -378,21 +368,20 @@ namespace at.myecdl.model.persistence {
             try {
                 SaveToFile(fileName, encoding);
                 return true;
-            }
-            catch (System.Exception e) {
+            } catch (System.Exception e) {
                 exception = e;
                 return false;
             }
         }
-        
+
         public virtual bool SaveToFile(string fileName, out System.Exception exception) {
             return SaveToFile(fileName, Encoding.UTF8, out exception);
         }
-        
+
         public virtual void SaveToFile(string fileName) {
             SaveToFile(fileName, Encoding.UTF8);
         }
-        
+
         public virtual void SaveToFile(string fileName, System.Text.Encoding encoding) {
             System.IO.StreamWriter streamWriter = null;
             try {
@@ -400,14 +389,13 @@ namespace at.myecdl.model.persistence {
                 streamWriter = new System.IO.StreamWriter(fileName, false, Encoding.UTF8);
                 streamWriter.WriteLine(xmlString);
                 streamWriter.Close();
-            }
-            finally {
+            } finally {
                 if ((streamWriter != null)) {
                     streamWriter.Dispose();
                 }
             }
         }
-        
+
         /// <summary>
         /// Deserializes xml markup from file into an exercise object
         /// </summary>
@@ -421,26 +409,25 @@ namespace at.myecdl.model.persistence {
             try {
                 obj = LoadFromFile(fileName, encoding);
                 return true;
-            }
-            catch (System.Exception ex) {
+            } catch (System.Exception ex) {
                 exception = ex;
                 return false;
             }
         }
-        
+
         public static bool LoadFromFile(string fileName, out exercise obj, out System.Exception exception) {
             return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
         }
-        
+
         public static bool LoadFromFile(string fileName, out exercise obj) {
             System.Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-        
+
         public static exercise LoadFromFile(string fileName) {
             return LoadFromFile(fileName, Encoding.UTF8);
         }
-        
+
         public static exercise LoadFromFile(string fileName, System.Text.Encoding encoding) {
             System.IO.FileStream file = null;
             System.IO.StreamReader sr = null;
@@ -451,8 +438,7 @@ namespace at.myecdl.model.persistence {
                 sr.Close();
                 file.Close();
                 return Deserialize(xmlString);
-            }
-            finally {
+            } finally {
                 if ((file != null)) {
                     file.Dispose();
                 }
@@ -463,24 +449,24 @@ namespace at.myecdl.model.persistence {
         }
         #endregion
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/test.xsd")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/test.xsd", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://tempuri.org/test.xsd")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://tempuri.org/test.xsd", IsNullable = false)]
     public partial class answer {
-        
+
         private string textField;
-        
+
         private bool isCorrectField;
-        
+
         private static System.Xml.Serialization.XmlSerializer serializer;
-        
+
         public answer() {
             this.isCorrectField = false;
         }
-        
+
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string text {
             get {
@@ -490,7 +476,7 @@ namespace at.myecdl.model.persistence {
                 this.textField = value;
             }
         }
-        
+
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(false)]
         public bool isCorrect {
@@ -501,7 +487,7 @@ namespace at.myecdl.model.persistence {
                 this.isCorrectField = value;
             }
         }
-        
+
         private static System.Xml.Serialization.XmlSerializer Serializer {
             get {
                 if ((serializer == null)) {
@@ -510,7 +496,7 @@ namespace at.myecdl.model.persistence {
                 return serializer;
             }
         }
-        
+
         #region Serialize/Deserialize
         /// <summary>
         /// Serializes current answer object into an XML document
@@ -528,8 +514,7 @@ namespace at.myecdl.model.persistence {
                 memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
                 streamReader = new System.IO.StreamReader(memoryStream);
                 return streamReader.ReadToEnd();
-            }
-            finally {
+            } finally {
                 if ((streamReader != null)) {
                     streamReader.Dispose();
                 }
@@ -538,11 +523,11 @@ namespace at.myecdl.model.persistence {
                 }
             }
         }
-        
+
         public virtual string Serialize() {
             return Serialize(Encoding.UTF8);
         }
-        
+
         /// <summary>
         /// Deserializes workflow markup into an answer object
         /// </summary>
@@ -556,31 +541,29 @@ namespace at.myecdl.model.persistence {
             try {
                 obj = Deserialize(xml);
                 return true;
-            }
-            catch (System.Exception ex) {
+            } catch (System.Exception ex) {
                 exception = ex;
                 return false;
             }
         }
-        
+
         public static bool Deserialize(string xml, out answer obj) {
             System.Exception exception = null;
             return Deserialize(xml, out obj, out exception);
         }
-        
+
         public static answer Deserialize(string xml) {
             System.IO.StringReader stringReader = null;
             try {
                 stringReader = new System.IO.StringReader(xml);
                 return ((answer)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
-            }
-            finally {
+            } finally {
                 if ((stringReader != null)) {
                     stringReader.Dispose();
                 }
             }
         }
-        
+
         /// <summary>
         /// Serializes current answer object into file
         /// </summary>
@@ -592,21 +575,20 @@ namespace at.myecdl.model.persistence {
             try {
                 SaveToFile(fileName, encoding);
                 return true;
-            }
-            catch (System.Exception e) {
+            } catch (System.Exception e) {
                 exception = e;
                 return false;
             }
         }
-        
+
         public virtual bool SaveToFile(string fileName, out System.Exception exception) {
             return SaveToFile(fileName, Encoding.UTF8, out exception);
         }
-        
+
         public virtual void SaveToFile(string fileName) {
             SaveToFile(fileName, Encoding.UTF8);
         }
-        
+
         public virtual void SaveToFile(string fileName, System.Text.Encoding encoding) {
             System.IO.StreamWriter streamWriter = null;
             try {
@@ -614,14 +596,13 @@ namespace at.myecdl.model.persistence {
                 streamWriter = new System.IO.StreamWriter(fileName, false, Encoding.UTF8);
                 streamWriter.WriteLine(xmlString);
                 streamWriter.Close();
-            }
-            finally {
+            } finally {
                 if ((streamWriter != null)) {
                     streamWriter.Dispose();
                 }
             }
         }
-        
+
         /// <summary>
         /// Deserializes xml markup from file into an answer object
         /// </summary>
@@ -635,26 +616,25 @@ namespace at.myecdl.model.persistence {
             try {
                 obj = LoadFromFile(fileName, encoding);
                 return true;
-            }
-            catch (System.Exception ex) {
+            } catch (System.Exception ex) {
                 exception = ex;
                 return false;
             }
         }
-        
+
         public static bool LoadFromFile(string fileName, out answer obj, out System.Exception exception) {
             return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
         }
-        
+
         public static bool LoadFromFile(string fileName, out answer obj) {
             System.Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-        
+
         public static answer LoadFromFile(string fileName) {
             return LoadFromFile(fileName, Encoding.UTF8);
         }
-        
+
         public static answer LoadFromFile(string fileName, System.Text.Encoding encoding) {
             System.IO.FileStream file = null;
             System.IO.StreamReader sr = null;
@@ -665,8 +645,7 @@ namespace at.myecdl.model.persistence {
                 sr.Close();
                 file.Close();
                 return Deserialize(xmlString);
-            }
-            finally {
+            } finally {
                 if ((file != null)) {
                     file.Dispose();
                 }
@@ -677,30 +656,30 @@ namespace at.myecdl.model.persistence {
         }
         #endregion
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/test.xsd")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/test.xsd", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://tempuri.org/test.xsd")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://tempuri.org/test.xsd", IsNullable = false)]
     public partial class question {
-        
+
         private List<answer> answerField;
-        
+
         private string idField;
-        
+
         private string textField;
-        
+
         private string pointsField;
-        
+
         private static System.Xml.Serialization.XmlSerializer serializer;
-        
+
         public question() {
             this.answerField = new List<answer>();
             this.pointsField = "1";
         }
-        
-        [System.Xml.Serialization.XmlElementAttribute("answer", Order=0)]
+
+        [System.Xml.Serialization.XmlElementAttribute("answer", Order = 0)]
         public List<answer> answer {
             get {
                 return this.answerField;
@@ -709,7 +688,7 @@ namespace at.myecdl.model.persistence {
                 this.answerField = value;
             }
         }
-        
+
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string id {
             get {
@@ -719,7 +698,7 @@ namespace at.myecdl.model.persistence {
                 this.idField = value;
             }
         }
-        
+
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string text {
             get {
@@ -729,8 +708,8 @@ namespace at.myecdl.model.persistence {
                 this.textField = value;
             }
         }
-        
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="positiveInteger")]
+
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType = "positiveInteger")]
         [System.ComponentModel.DefaultValueAttribute("1")]
         public string points {
             get {
@@ -740,7 +719,7 @@ namespace at.myecdl.model.persistence {
                 this.pointsField = value;
             }
         }
-        
+
         private static System.Xml.Serialization.XmlSerializer Serializer {
             get {
                 if ((serializer == null)) {
@@ -749,7 +728,7 @@ namespace at.myecdl.model.persistence {
                 return serializer;
             }
         }
-        
+
         #region Serialize/Deserialize
         /// <summary>
         /// Serializes current question object into an XML document
@@ -767,8 +746,7 @@ namespace at.myecdl.model.persistence {
                 memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
                 streamReader = new System.IO.StreamReader(memoryStream);
                 return streamReader.ReadToEnd();
-            }
-            finally {
+            } finally {
                 if ((streamReader != null)) {
                     streamReader.Dispose();
                 }
@@ -777,11 +755,11 @@ namespace at.myecdl.model.persistence {
                 }
             }
         }
-        
+
         public virtual string Serialize() {
             return Serialize(Encoding.UTF8);
         }
-        
+
         /// <summary>
         /// Deserializes workflow markup into an question object
         /// </summary>
@@ -795,31 +773,29 @@ namespace at.myecdl.model.persistence {
             try {
                 obj = Deserialize(xml);
                 return true;
-            }
-            catch (System.Exception ex) {
+            } catch (System.Exception ex) {
                 exception = ex;
                 return false;
             }
         }
-        
+
         public static bool Deserialize(string xml, out question obj) {
             System.Exception exception = null;
             return Deserialize(xml, out obj, out exception);
         }
-        
+
         public static question Deserialize(string xml) {
             System.IO.StringReader stringReader = null;
             try {
                 stringReader = new System.IO.StringReader(xml);
                 return ((question)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
-            }
-            finally {
+            } finally {
                 if ((stringReader != null)) {
                     stringReader.Dispose();
                 }
             }
         }
-        
+
         /// <summary>
         /// Serializes current question object into file
         /// </summary>
@@ -831,21 +807,20 @@ namespace at.myecdl.model.persistence {
             try {
                 SaveToFile(fileName, encoding);
                 return true;
-            }
-            catch (System.Exception e) {
+            } catch (System.Exception e) {
                 exception = e;
                 return false;
             }
         }
-        
+
         public virtual bool SaveToFile(string fileName, out System.Exception exception) {
             return SaveToFile(fileName, Encoding.UTF8, out exception);
         }
-        
+
         public virtual void SaveToFile(string fileName) {
             SaveToFile(fileName, Encoding.UTF8);
         }
-        
+
         public virtual void SaveToFile(string fileName, System.Text.Encoding encoding) {
             System.IO.StreamWriter streamWriter = null;
             try {
@@ -853,14 +828,13 @@ namespace at.myecdl.model.persistence {
                 streamWriter = new System.IO.StreamWriter(fileName, false, Encoding.UTF8);
                 streamWriter.WriteLine(xmlString);
                 streamWriter.Close();
-            }
-            finally {
+            } finally {
                 if ((streamWriter != null)) {
                     streamWriter.Dispose();
                 }
             }
         }
-        
+
         /// <summary>
         /// Deserializes xml markup from file into an question object
         /// </summary>
@@ -874,26 +848,25 @@ namespace at.myecdl.model.persistence {
             try {
                 obj = LoadFromFile(fileName, encoding);
                 return true;
-            }
-            catch (System.Exception ex) {
+            } catch (System.Exception ex) {
                 exception = ex;
                 return false;
             }
         }
-        
+
         public static bool LoadFromFile(string fileName, out question obj, out System.Exception exception) {
             return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
         }
-        
+
         public static bool LoadFromFile(string fileName, out question obj) {
             System.Exception exception = null;
             return LoadFromFile(fileName, out obj, out exception);
         }
-        
+
         public static question LoadFromFile(string fileName) {
             return LoadFromFile(fileName, Encoding.UTF8);
         }
-        
+
         public static question LoadFromFile(string fileName, System.Text.Encoding encoding) {
             System.IO.FileStream file = null;
             System.IO.StreamReader sr = null;
@@ -904,8 +877,7 @@ namespace at.myecdl.model.persistence {
                 sr.Close();
                 file.Close();
                 return Deserialize(xmlString);
-            }
-            finally {
+            } finally {
                 if ((file != null)) {
                     file.Dispose();
                 }

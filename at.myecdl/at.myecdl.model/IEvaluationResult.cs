@@ -5,5 +5,9 @@ using System.Text;
 
 namespace at.myecdl.model {
     public interface IEvaluationResult {
+        bool IsOk { get; }
+
+        string Message{ get; }
+
     }
 }
