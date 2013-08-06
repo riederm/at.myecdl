@@ -34,6 +34,9 @@
     <Reference Include="Castle.Core">
       <HintPath>..\packages\Castle.Core.3.0.0.4001\lib\net40-client\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
     </Reference>
@@ -47,7 +50,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EvaluationResult.cs" />
+    <Compile Include="file\IFileConditionFactory.cs" />
+    <Compile Include="file\impl\FileConditionFactoryImpl.cs" />
     <Compile Include="file\task\FileTask002.cs" />
+    <Compile Include="file\task\FileTask003.cs" />
+    <Compile Include="file\task\FileTask004.cs" />
+    <Compile Include="ICondition.cs" />
+    <Compile Include="impl\CompoundCommand.cs" />
+    <Compile Include="impl\CompoundEvaluationResult.cs" />
+    <Compile Include="impl\DelegatingCondition.cs" />
+    <Compile Include="MultiEvaluationResult.cs" />
     <Compile Include="persistence\ITestDeserializer.cs" />
     <Compile Include="TaskAttribute.cs" />
     <Compile Include="file\IFileSystem.cs" />
@@ -55,7 +67,6 @@
     <Compile Include="file\impl\FileNameFactory.cs" />
     <Compile Include="file\impl\FileSystemImpl.cs" />
     <Compile Include="file\impl\VolumeFileSystemDecorator.cs" />
-    <Compile Include="file\ITaskFilesProvider.cs" />
     <Compile Include="file\task\AbstractFileTask.cs" />
     <Compile Include="file\task\FileTask001.cs" />
     <Compile Include="IAnswer.cs" />

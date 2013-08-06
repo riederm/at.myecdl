@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionBuilderTest.cs" />
+    <Compile Include="VolumeFileSystemDecoratorTest.cs" />
     <Compile Include="XmlQuestionConverterTest.cs" />
   </ItemGroup>
   <ItemGroup>

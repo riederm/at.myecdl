@@ -10,5 +10,13 @@ xsi:noNamespaceSchemaLocation="test.xsd"
   <exercise id="ft.002"
             text="Navigieren Sie zu {PATH}M2_Demo_Vista\arbeit\tabellen\2006 &#xA;Löschen Sie den Ordner 2006"
             class="at.myecdl.model.file.task.FileTask001"/>
+
+  <exercise id="ft.003"
+            text="Suchen Sie in {PATH}M2_Demo_Vista und allen Unterordnern nach reisen.xlsx &#xA;Ändern Sie den Dateinamen von reisen.xlsx auf fahrten.xlsx"
+            class="at.myecdl.model.file.task.FileTask003"/>
+
+  <exercise id="ft.004"
+            text="Suchen Sie in {PATH}M2_Demo_Vista und allen Unterordnern nach Test.xlsx &#xA;Ändern Sie den Dateinamen von Test.xlsx auf Blub.xlsx"
+            class="at.myecdl.model.file.task.FileTask003"/>
   
 </test>

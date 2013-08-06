@@ -46,6 +46,8 @@ namespace at.myecdl.model.inject {
             Bind<IFactory<IAnswer>>().To<AnswerFactory>();
             Bind<IFactory<IExercise>>().To<ExerciseFactory>();
             Bind<TaggedExerciseInitializer>().ToSelf();
+
+            Bind<IFileConditionFactory>().To<FileConditionFactoryImpl>();
         }
 
         private void BindPersistence() {

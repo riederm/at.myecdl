@@ -80,6 +80,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="impl\TestResultWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="impl\TestRunWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -103,6 +107,10 @@
     </Compile>
     <Compile Include="impl\SelectTestUi.xaml.cs">
       <DependentUpon>SelectTestUi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="impl\TaskResultViewModel.cs" />
+    <Compile Include="impl\TestResultWindow.xaml.cs">
+      <DependentUpon>TestResultWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="impl\TestRunnerImpl.cs" />
     <Compile Include="impl\TestRunWindow.xaml.cs">
@@ -169,6 +177,9 @@
   <ItemGroup>
     <Resource Include="impl\img\texture.jpg" />
     <Resource Include="impl\img\texture3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="impl\img\results.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

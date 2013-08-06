@@ -10,10 +10,12 @@ namespace at.myecdl.model.file.task {
     public class FileTask002 : AbstractFileTask {
         
         const string FOLDER = @"M2_Demo_Vista\arbeit\tabellen\2006";
+        private IFileConditionFactory conditionFactory;
 
         [Inject]
-        public FileTask002(IFileSystem fs, IVolumeProvider vp)
+        public FileTask002(IFileSystem fs, IVolumeProvider vp, IFileConditionFactory conditionFactory)
             : base(fs, vp) {
+                this.conditionFactory = conditionFactory;
         }
 
         public override void Setup() {
@@ -21,10 +23,8 @@ namespace at.myecdl.model.file.task {
         }
 
         public override IEvaluationResult Evaluate() {
-            if (!fs.Exists(FOLDER)) {
-                return EvaluationResult.OK;
-            }
-            return EvaluationResult.Error(String.Format("Der Ordern '{0}' wurde nicht gelöscht", vp.GetFullPath(FOLDER)));
+            var condition = conditionFactory.Folder(FOLDER).WasDeleted();
+            return condition.Evaluate();
         }
     }
 }

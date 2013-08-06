@@ -112,5 +112,7 @@ namespace at.myecdl.ui.impl {
             progressBar.Maximum = maxSteps;
             progressBar.Value = currentStep;
         }
+
+        
     }
 }

@@ -50,5 +50,15 @@ namespace at.myecdl.model.file.impl {
             }
             return volumePaths;
         }
+
+        public bool FileExists(string fullPath) {
+            string path = volumeProvider.GetFullPath(fullPath);
+            return fsDelegate.FileExists(path);
+        }
+
+        public bool DirectoryExists(string fullPath) {
+            string path = volumeProvider.GetFullPath(fullPath);
+            return fsDelegate.DirectoryExists(path);
+        }
     }
 }

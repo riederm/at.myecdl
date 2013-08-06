@@ -4,13 +4,24 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using Ninject;
+using at.myecdl.model.impl;
+using ICSharpCode.SharpZipLib.Zip;
 
 namespace at.myecdl.model.file.impl {
     public class FileSystemImpl : IFileSystem {
- 
+
         public bool Exists(string volumeRelativePath) {
-            return File.Exists(volumeRelativePath) || Directory.Exists(volumeRelativePath);
+            return FileExists(volumeRelativePath) || DirectoryExists(volumeRelativePath);
         }
+
+        public bool DirectoryExists(string volumeRelativePath) {
+            return Directory.Exists(volumeRelativePath);
+        }
+
+        public bool FileExists(string volumeRelativePath) {
+            return System.IO.File.Exists(volumeRelativePath);
+        }
+
 
         public void CreateFile(string volumeRelativePath) {
             using (System.IO.FileStream fs = System.IO.File.Create(volumeRelativePath)) {
@@ -39,5 +50,8 @@ namespace at.myecdl.model.file.impl {
                 CreateFile(item, content);
             }
         }
-    }
+
+
+
+    }  
 }
